@@ -1,0 +1,29 @@
+sudo: required
+
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - DOCKER_REPO: 9jkh/mysql-client
+    # DOCKER_USERNAME
+    - secure: "Gp0g3mClMFa36p8VYlnBtfaexAImIosldlMSJnw9U3wMqh9bhNE/qyqMTBDVCra0LjQOb3+ERnQ2/Jo/k76to2zdV0KujM2zn0GAtD9mlZ8HMgPafR5MjJoeYs9Gfy2J+tQH1HDRpTbQ4aed+ASxQZyNnjNOjsbYVLXSm5MEK+poic2wZWDsNVUKN4kKQVnDrWsTulDlDRBL/+3Zd35JXFfYDd9YYnWhfuHeb2qzl3j483ok6snN5bwRoS6o7HeQ75iADPBY41UhxBjS5Zc478GHvhotfLYms3WEKwdirAxYnLSDaGMdlpTIKd3wDzBQOCJP+Vb3Cpc4GKAVasLr7xmmHSAmM0BV75Bh7O/J21oOuJ32ZaXRIII5SQciJlEhvs9nyUfRAfcllE9FS0Xrz/VsPc/5MuRKb3kpjOjVmp6hD3F/s5eZV9dzWDIQlmh1fIvwMyi232t3lGVc7bz2ev/w6ZObDYB/Q9NQIb8BT6VNTEpEzQxrJ65hIT3zqLF9ughOiSOuZnIzeCb8VNfjw7f1LxtMC5sC9ck2FWvW6nOjd616DDH2w+YwR16YEIey7S0b0XS24QcY2g9GgdRj2qoMY5IF63FZMvBHPoPqQOee1r+Yli9TO009Ylwu4ppHpz1dS/VTNxBx9bKiS3VG7cdSbFoF4pCG1u5Lcb9ywwk="
+    # DOCKER_PASSWORD
+    - secure: "TqQ6jFiDo5gwXdejB61GIoyL8PwhYfxC32SXRRczzFbSl4CvSxbu1g3joQWMIRLgKYFV9mPskHHk4/NIzZ/vMAnBNq/Tv6Rq+d67vzT55HDyXj03ib2EQEl0HyYzoe+SYUeXLksfnJ+pJco4mYrXO+/XcWOC5g3sf+IVCNIpTLEAnQVM9I298Wgbgk9vY7bLwLh51qfg7L+xm4bv172cO9KpaEneDSCxsMVEj4XwbD6UPwKAI186OyUQJwBr90rB/XXWtTZsSGQCxYhyjW5EQa3xljRq4KXy019Z/lKL3uQnfjqBWHMcxE3grrfyktF3kkmMqYE0eXjdEt8CTLVB6C/P/J5knke2DggnIPC0Wh7j5jrlhubDNBFjnEcOttBHZF9agKpPxwt1nuvLL3M5MWXvcD4AmX895UHHHkH+Mw7RSPgOmgmru18cOkpGj+tCgGv+tUFGUKXEFacIdi6oTrRYeQ51j+zqLeg6frSjutIS7ZBvbkMl/V5NgD5+uq1haSjD3pHYC3Ntfcn07/anOSavIdYAWL/GAiMWEtkQ4JvwLWHADZldDdRc343BVW3KG07GMwcqiwrDC7KGf9WGt/korT8/xDKax2sgLF78/m+9p6lw4LJEKN+ydOLYAbtEz0vSaq3GpFcT2EIzMqclmHmUejDxkjek3luhrN1bYPQ="
+
+deploy:
+  - provider: script
+    script: "./publish.sh"
+    on:
+      branch: master
+    skip_cleanup: true
+
+  - provider: script
+    script: "./publish.sh"
+    on:
+      tags: true
+    skip_cleanup: true
+
+script: "./build.sh"
